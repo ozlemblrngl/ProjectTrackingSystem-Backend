@@ -10,7 +10,7 @@ namespace Business.Dtos.Assignment.Request
 
         public string Description { get; set; }
 
-        public DateTime CreationDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public Status Status { get; set; }
     }

@@ -7,6 +7,7 @@ using Core.Business.Requests;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concretes
 {
@@ -64,7 +65,7 @@ namespace Business.Concretes
 
         public async Task<IPaginate<GetListAssignmentResponse>> GetList(PageRequest request)
         {
-            var result = await _assignmentDal.GetListAsync(index: request.Index, size: request.Size);
+            var result = await _assignmentDal.GetListAsync(index: request.Index, size: request.Size, include: x => x.Include(y => y.Project));
             Paginate<GetListAssignmentResponse> response = _mapper.Map<Paginate<GetListAssignmentResponse>>(result);
             return response;
         }

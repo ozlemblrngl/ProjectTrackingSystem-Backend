@@ -1,6 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Assignment.Request;
 using Core.Business.Requests;
+using Entities.Concretes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -19,6 +20,8 @@ namespace WebAPI.Controllers
         [HttpGet("get")]
         public async Task<IActionResult> Get([FromQuery] int Id)
         {
+            User user = new User();
+            user.Projects = new List<Project>();
             var result = await _assignmentService.Get(Id);
             return Ok(result);
         }

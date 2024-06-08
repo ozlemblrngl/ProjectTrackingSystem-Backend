@@ -4,5 +4,6 @@
     {
         public int Index { get; set; }
         public int Size { get; set; }
+        public int UserId { get; set; }
     }
 }

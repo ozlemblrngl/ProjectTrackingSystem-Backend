@@ -19,7 +19,9 @@ namespace Business.Profiles
             CreateMap<GetAssignmentResponse, DeleteAssignmentRequest>().ReverseMap();
             CreateMap<GetAssignmentResponse, UpdateAssignmentRequest>().ReverseMap();
 
-            CreateMap<Assignment, GetAssignmentResponse>().ReverseMap();
+            CreateMap<Assignment, GetAssignmentResponse>()
+                .ForMember(dest => dest.ProjectName, opt => opt.MapFrom(src => src.Project.Name))
+                .ReverseMap();
             CreateMap<Assignment, GetListAssignmentResponse>().ReverseMap();
             CreateMap<Paginate<Assignment>, Paginate<GetListAssignmentResponse>>().ReverseMap();
 
