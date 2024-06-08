@@ -14,6 +14,8 @@ namespace Business
         {
 
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IProjectService, ProjectManager>();
+            services.AddScoped<IAssignmentService, AssignmentManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<ITokenHelper, JwtHelper>();
 

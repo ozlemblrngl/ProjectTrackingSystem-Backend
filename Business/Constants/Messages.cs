@@ -27,5 +27,7 @@
         public static string InvalidEmail = "Girdiğiniz-posta adresi geçersizdir.";
         public static string MustContainMinSixChar = "En az altı karakter uzunluğunda olmalıdır.";
         public static string MustContainAtMaxFiftyChar = "En fazla elli karakter uzunluğunda olmalıdır.";
+        public static string MustContainAtMinfiveChar = "En az 5 karakter olmalıdır.";
+        public static string MustContainMinFiftyChar = "En fazla 50 karakter olmalıdır";
     }
 }
