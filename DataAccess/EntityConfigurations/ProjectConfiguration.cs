@@ -15,7 +15,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.StartDate).HasColumnName("StartDate").IsRequired();
             builder.Property(b => b.EndDate).HasColumnName("EndDate").IsRequired();
 
-            builder.HasOne(c => c.User).WithMany(s => s.Projects).HasForeignKey(e => e.UserId);
+            builder.HasOne(b => b.User).WithMany().HasForeignKey(b => b.UserId);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
 
