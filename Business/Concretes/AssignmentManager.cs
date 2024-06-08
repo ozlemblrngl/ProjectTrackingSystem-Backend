@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
+using Business.Dtos.Assignment.Request;
+using Business.Dtos.Assignment.Response;
+using Business.Rules;
 using Core.Business.Requests;
 using Core.DataAccess.Paging;
+using DataAccess.Abstracts;
 using Entities.Concretes;
 
 namespace Business.Concretes
@@ -12,7 +16,7 @@ namespace Business.Concretes
         IMapper _mapper;
         AssignmentBusinessRules _businessRules;
 
-        public AssignmentManager(IAssignmentDal projectDal, IMapper mapper, AssignmentBusinessRules businessRules)
+        public AssignmentManager(IAssignmentDal assignmentDal, IMapper mapper, AssignmentBusinessRules businessRules)
         {
             _assignmentDal = assignmentDal;
             _mapper = mapper;
@@ -30,6 +34,8 @@ namespace Business.Concretes
             return response;
 
         }
+
+
 
         public async Task<GetAssignmentResponse> Delete(DeleteAssignmentRequest request)
         {
@@ -67,7 +73,7 @@ namespace Business.Concretes
 
         public async Task<GetAssignmentResponse> Update(UpdateAssignmentRequest request)
         {
-            Assignment assignment = await _AssignmentDal.GetAsync(predicate: c => c.Id == request.Id);
+            Assignment assignment = await _assignmentDal.GetAsync(predicate: c => c.Id == request.Id);
 
 
             Assignment updatedAssignment = _mapper.Map(request, assignment);

@@ -8,5 +8,7 @@ namespace Entities.Concretes
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        public List<Assignment> Assignments { get; set; }
     }
 }

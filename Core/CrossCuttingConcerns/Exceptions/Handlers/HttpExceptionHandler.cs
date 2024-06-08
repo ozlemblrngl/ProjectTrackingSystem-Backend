@@ -1,4 +1,5 @@
-﻿using Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
+﻿using Core.CrossCuttingConcerns.Exceptions.Extentions;
+using Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Microsoft.AspNetCore.Http;
 

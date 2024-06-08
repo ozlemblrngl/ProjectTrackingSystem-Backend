@@ -1,4 +1,5 @@
 ﻿using Core.Business.Rules;
+using DataAccess.Abstracts;
 
 namespace Business.Rules
 {

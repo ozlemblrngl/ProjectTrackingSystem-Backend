@@ -15,6 +15,8 @@ namespace DataAccess
             services.AddDbContext<ProjectTrackingSystemContext>(options => options.UseSqlServer(configuration.GetConnectionString("ProjectTrackingSystem")), contextLifetime: ServiceLifetime.Transient);
 
             services.AddScoped<IUserDal, EfUserDal>();
+            services.AddScoped<IProjectDal, EfProjectDal>();
+            services.AddScoped<IAssignmentDal, EfAssignmentDal>();
             return services;
         }
     }

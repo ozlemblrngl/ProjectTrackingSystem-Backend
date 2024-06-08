@@ -1,6 +1,6 @@
 ﻿namespace Business.Dtos.Project.Request
 {
-    internal class UpdateProjectRequest
+    public class UpdateProjectRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }

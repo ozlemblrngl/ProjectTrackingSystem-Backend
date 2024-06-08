@@ -17,6 +17,8 @@ namespace DataAccess.EntityConfigurations
             builder.Property(b => b.PasswordHash).HasColumnName("PasswordHash").IsRequired();
             builder.Property(b => b.Status).HasColumnName("Status");
 
+            builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
+
         }
     }
 }

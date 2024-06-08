@@ -1,4 +1,6 @@
-﻿namespace Business.Dtos.Auth.Requests
+﻿using Core.Entities;
+
+namespace Business.Dtos.Auth.Requests
 {
     public class RegisterAuthRequest : IDto
     {

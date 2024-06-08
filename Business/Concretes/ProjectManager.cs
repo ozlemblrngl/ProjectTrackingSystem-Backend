@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
+using Business.Dtos.Project.Request;
+using Business.Dtos.Project.Response;
+using Business.Rules;
 using Core.Business.Requests;
 using Core.DataAccess.Paging;
+using DataAccess.Abstracts;
 using Entities.Concretes;
 
 namespace Business.Concretes
@@ -30,6 +34,8 @@ namespace Business.Concretes
 
         }
 
+
+
         public async Task<GetProjectResponse> Delete(DeleteProjectRequest request)
         {
             Project project = await _projectDal.GetAsync(predicate: u => u.Id == request.Id);
@@ -40,8 +46,6 @@ namespace Business.Concretes
             return response;
 
         }
-
-
 
         public async Task<GetProjectResponse> Get(int id)
         {
@@ -76,6 +80,7 @@ namespace Business.Concretes
             GetProjectResponse response = _mapper.Map<GetProjectResponse>(updatedProject);
             return response;
         }
+
 
 
     }

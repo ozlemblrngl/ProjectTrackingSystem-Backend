@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
@@ -10,6 +11,10 @@ namespace DataAccess.Context
         protected IConfiguration Configuration { get; set; }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
         public ProjectTrackingSystemContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
