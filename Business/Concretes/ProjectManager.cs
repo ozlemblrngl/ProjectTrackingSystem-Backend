@@ -66,7 +66,12 @@ namespace Business.Concretes
             return response;
         }
 
-
+        public async Task<IPaginate<GetListProjectResponse>> GetListByUserId(GetListByUserIdRequest request)
+        {
+            var result = await _projectDal.GetListAsync(predicate: x => x.UserId == request.UserId, index: request.Index, size: request.Size);
+            Paginate<GetListProjectResponse> response = _mapper.Map<Paginate<GetListProjectResponse>>(result);
+            return response;
+        }
 
         public async Task<GetProjectResponse> Update(UpdateProjectRequest request)
         {

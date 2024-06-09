@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Assignment.Request;
+using Business.Dtos.Project.Request;
 using Core.Business.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getlist")]
+        [HttpGet("getList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _assignmentService.GetList(pageRequest);
@@ -32,8 +33,24 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet("getListByUserId")]
+        public async Task<IActionResult> GetListByUserId([FromQuery] GetListByUserIdRequest request)
+        {
+            var result = await _assignmentService.GetListByUserId(request);
+            return Ok(result);
+
+        }
+
+        [HttpGet("getListByProjectId")]
+        public async Task<IActionResult> GetListByProjectId([FromQuery] GetListAssigmentRequest request)
+        {
+            var result = await _assignmentService.GetListByProjectId(request);
+            return Ok(result);
+
+        }
+
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromQuery] UpdateAssignmentRequest updateAssignmentRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateAssignmentRequest updateAssignmentRequest)
         {
             var result = await _assignmentService.Update(updateAssignmentRequest);
             return Ok(result);

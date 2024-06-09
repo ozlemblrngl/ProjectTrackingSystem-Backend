@@ -1,4 +1,5 @@
-﻿using Entities.Enums;
+﻿using Core.CrossCuttingConcerns.Exceptions.Extensions;
+using Entities.Enums;
 
 namespace Business.Dtos.Assignment.Response
 {
@@ -14,5 +15,6 @@ namespace Business.Dtos.Assignment.Response
         public DateTime CreatedDate { get; set; }
 
         public Status Status { get; set; }
+        public string StatusText { get { return Status.GetDescription(); } }
     }
 }

@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Business.Dtos.Assignment.Request;
 using Business.Dtos.Assignment.Response;
+using Business.Dtos.Project.Request;
 using Business.Rules;
 using Core.Business.Requests;
 using Core.DataAccess.Paging;
@@ -63,15 +64,19 @@ namespace Business.Concretes
 
 
 
-        public async Task<IPaginate<GetListAssignmentResponse>> GetList(PageRequest request)
+        public async Task<IPaginate<GetListAssignmentResponse>> GetListByProjectId(GetListAssigmentRequest request)
         {
-            var result = await _assignmentDal.GetListAsync(index: request.Index, size: request.Size, include: x => x.Include(y => y.Project));
+            var result = await _assignmentDal.GetListAsync(predicate: x => x == null || x.ProjectId == request.ProjectId, index: request.Index, size: request.Size, include: x => x.Include(y => y.Project));
             Paginate<GetListAssignmentResponse> response = _mapper.Map<Paginate<GetListAssignmentResponse>>(result);
             return response;
         }
 
-
-
+        public async Task<IPaginate<GetListAssignmentResponse>> GetList(PageRequest pageRequest)
+        {
+            var result = await _assignmentDal.GetListAsync(index: pageRequest.Index, size: pageRequest.Size, include: x => x.Include(y => y.Project));
+            Paginate<GetListAssignmentResponse> response = _mapper.Map<Paginate<GetListAssignmentResponse>>(result);
+            return response;
+        }
         public async Task<GetAssignmentResponse> Update(UpdateAssignmentRequest request)
         {
             Assignment assignment = await _assignmentDal.GetAsync(predicate: c => c.Id == request.Id);
@@ -82,6 +87,14 @@ namespace Business.Concretes
             await _assignmentDal.UpdateAsync(updatedAssignment);
 
             GetAssignmentResponse response = _mapper.Map<GetAssignmentResponse>(updatedAssignment);
+            return response;
+        }
+
+        public async Task<IPaginate<GetListAssignmentResponse>> GetListByUserId(GetListByUserIdRequest request)
+        {
+
+            var result = await _assignmentDal.GetListAsync(predicate: x => x.Project.UserId == request.UserId, index: request.Index, size: request.Size, include: x => x.Include(y => y.Project));
+            Paginate<GetListAssignmentResponse> response = _mapper.Map<Paginate<GetListAssignmentResponse>>(result);
             return response;
         }
     }

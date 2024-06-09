@@ -12,5 +12,6 @@ namespace Business.Abstracts
         Task<GetProjectResponse> Delete(DeleteProjectRequest deleteProjectRequest);
         Task<IPaginate<GetListProjectResponse>> GetList(PageRequest pageRequest);
         Task<GetProjectResponse> Get(int id);
+        Task<IPaginate<GetListProjectResponse>> GetListByUserId(GetListByUserIdRequest request);
     }
 }

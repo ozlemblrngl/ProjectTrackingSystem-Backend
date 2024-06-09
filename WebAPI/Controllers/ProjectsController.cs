@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getlist")]
+        [HttpGet("getList")]
         public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
         {
             var result = await _projectService.GetList(pageRequest);
@@ -31,8 +31,16 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet("getListByUserId")]
+        public async Task<IActionResult> GetListByUserId([FromQuery] GetListByUserIdRequest request)
+        {
+            var result = await _projectService.GetListByUserId(request);
+            return Ok(result);
+
+        }
+
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromQuery] UpdateProjectRequest updateProjectRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateProjectRequest updateProjectRequest)
         {
             var result = await _projectService.Update(updateProjectRequest);
             return Ok(result);

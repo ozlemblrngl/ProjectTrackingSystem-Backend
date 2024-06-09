@@ -1,6 +1,4 @@
-﻿using Entities.Enums;
-
-namespace Business.Dtos.Assignment.Request
+﻿namespace Business.Dtos.Assignment.Request
 {
     public class CreateAssignmentRequest
     {
@@ -11,7 +9,7 @@ namespace Business.Dtos.Assignment.Request
 
         public DateTime CreatedDate { get; set; }
 
-        public Status Status { get; set; }
+        public int Status { get; set; }
 
     }
 }
