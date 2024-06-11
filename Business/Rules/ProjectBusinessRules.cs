@@ -2,7 +2,6 @@
 using Core.Business.Rules;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using DataAccess.Abstracts;
-using Entities.Concretes;
 
 namespace Business.Rules
 {
@@ -15,12 +14,19 @@ namespace Business.Rules
             _projectDal = projectDal;
         }
 
-        public Task ProjectShouldExistWhenSelected(Project? project)
+        public async Task ProjectNameNotBeTheSame(string name)
         {
-            if (project == null)
-                throw new BusinessException(Messages.ProjectNotExists);
-            return Task.CompletedTask;
+            bool doesExist = await _projectDal.AnyAsync(predicate: p => p.Name == name);
+            if (doesExist)
+                throw new BusinessException(Messages.ProjectNameCanNotBeTheSame);
         }
 
+        public void ProjectEndDateCanNotBeBeforeStartDate(DateTime startDate, DateTime endDate)
+        {
+            if (endDate < startDate)
+            {
+                throw new BusinessException(Messages.EndDateCanNotBeBeforeStartDate);
+            }
+        }
     }
 }

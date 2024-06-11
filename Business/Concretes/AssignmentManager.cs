@@ -30,6 +30,7 @@ namespace Business.Concretes
         public async Task<GetAssignmentResponse> Add(CreateAssignmentRequest request)
         {
             Assignment assignment = _mapper.Map<Assignment>(request);
+            await _businessRules.AssignmentNameShouldBeUnique(assignment.Title);
 
             await _assignmentDal.AddAsync(assignment);
             GetAssignmentResponse response = _mapper.Map<GetAssignmentResponse>(assignment);
@@ -93,7 +94,10 @@ namespace Business.Concretes
         public async Task<IPaginate<GetListAssignmentResponse>> GetListByUserId(GetListByUserIdRequest request)
         {
 
-            var result = await _assignmentDal.GetListAsync(predicate: x => x.Project.UserId == request.UserId, index: request.Index, size: request.Size, include: x => x.Include(y => y.Project));
+            var result = await _assignmentDal.GetListAsync(
+                predicate: x => x.Project.UserId == request.UserId,
+                index: request.Index, size: request.Size,
+                include: x => x.Include(y => y.Project));
             Paginate<GetListAssignmentResponse> response = _mapper.Map<Paginate<GetListAssignmentResponse>>(result);
             return response;
         }

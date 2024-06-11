@@ -19,18 +19,18 @@ namespace Business.Rules
 
         public Task UserShouldBeExistsWhenSelected(User? user)
         {
-            if (user == null)
+            if (user != null)
                 throw new BusinessException(Messages.UserAlreadyExists);
             return Task.CompletedTask;
         }
 
-        public async Task UserIdShouldBeExistsWhenSelected(int id)
+
+        public async Task UserIdShouldBeExistWhenSelected(int id)
         {
             bool doesExist = await _userDal.AnyAsync(predicate: u => u.Id == id, enableTracking: false);
             if (doesExist)
-                throw new BusinessException(Messages.UserNotBeExist);
+                throw new BusinessException(Messages.UserAlreadyBeExist);
         }
-
 
 
         public Task UserPasswordShouldBeMatched(User user, string password)
@@ -46,6 +46,7 @@ namespace Business.Rules
             if (doesExists)
                 throw new BusinessException(Messages.UserMailAlreadyExists);
         }
+
 
         public async Task UserEmailShouldNotExistsWhenUpdate(int id, string email)
         {

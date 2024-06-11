@@ -30,5 +30,11 @@
         public static string MustContainAtMinfiveChar = "En az 5 karakter olmalıdır.";
         public static string MustContainMinFiftyChar = "En fazla 50 karakter olmalıdır";
         public static string? ProjectNotExists = "Proje mevcut değil";
+        public static string? UserAlreadyBeExist = "Kullanıcı zaten mevcut";
+        public static string? ProjectAlreadyExists = "Proje zaten mevcut";
+        public static string? ProjectNameCanNotBeTheSame = "proje ismi aynı olamaz";
+        public static string? StartDateShoulBeFuture = "başlangıç günü geçmişte olamaz";
+        public static string? EndDateCanNotBeBeforeStartDate = "Proje Bitiş Günü Başlangıç Gününden Önce Olamaz";
+        public static string? AssignmentNameCanNotBeTheSame = "Görev ismi aynı olamaz";
     }
 }

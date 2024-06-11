@@ -27,6 +27,8 @@ namespace Business.Concretes
         public async Task<GetProjectResponse> Add(CreateProjectRequest request)
         {
             Project project = _mapper.Map<Project>(request);
+            await _businessRules.ProjectNameNotBeTheSame(project.Name);
+            _businessRules.ProjectEndDateCanNotBeBeforeStartDate(project.EndDate, project.StartDate);
 
             await _projectDal.AddAsync(project);
             GetProjectResponse response = _mapper.Map<GetProjectResponse>(project);
